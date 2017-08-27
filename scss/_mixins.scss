@@ -1,0 +1,170 @@
+@mixin breakpoint ($from: null, $until: null) {
+  @if $until and $from {
+    @media screen and (min-width: map-get($breakpoints, $from) + 1px) and (max-width: map-get($breakpoints, $until)) {
+      @content;
+    }
+  }
+  @else if $until {
+    @media screen and (max-width: map-get($breakpoints, $until)) {
+      @content;
+    }
+  }
+  @else if $from {
+    @media screen and (min-width: map-get($breakpoints, $from) + 1px) {
+      @content;
+    }
+  }
+}
+
+@mixin touch-momentum () {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+@mixin clearfix {
+  &:before,
+  &:after {
+    display: table;
+    content: '';
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin full-area {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+@mixin font-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
+}
+
+@mixin user-select ($value) {
+  -webkit-user-select : $value;
+  -moz-user-select : $value;
+  -ms-user-select : $value;
+  user-select : $value;
+}
+
+@mixin grabbable {
+  cursor: move;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+
+  &:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+  }
+}
+
+@mixin image ($type : 'normal') {
+  display: block;
+  max-width: 100%;
+  height: auto;
+
+  @if $type == 'full' {
+    width: 100%;
+  }
+}
+
+@mixin vertical-title ($color : $color-red) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  transform-origin: right bottom;
+  transform: translateX(-100%) translateY(-100%) rotate(-90deg) translateX(100%);
+  color: $color;
+}
+
+@mixin highlight ($color : $color-red) {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  transition: color 0.5s ease-in-out;
+  text-decoration: none;
+
+  &:hover {
+    color: $color;
+
+    &::before {
+      transform: translateX(0);
+    }
+
+    > * {
+      transform: translateY(-15%);
+    }
+  }
+
+  &::before {
+    position: absolute;
+    height: 1px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: $color;
+    content: '';
+    transform: translateX(-102%);
+    transition: transform 0.5s ease-in-out;
+  }
+
+  > * {
+    display: block;
+    position: relative;
+    transition: transform 0.5s ease-in-out;
+  }
+}
+
+@mixin border-bottom($color:$color-red, $color-inactive:$color-light-grey) {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 2px;
+
+  > span {
+    display: block;
+    position: relative;
+    z-index: 1;
+    transition: all 0.5s ease-in-out;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    left: 0;
+    right: 0;
+  }
+
+  &::before {
+    background-color: $color-inactive;
+  }
+
+  &::after {
+    background-color: $color;
+    transform: translateX(-101%);
+    transition: all 0.5s ease-in-out;
+  }
+
+  &:hover {
+    span {
+      transform: translateY(-10%);
+      color: $color;
+    }
+
+    &::after {
+      transform: translateX(0);
+    }
+  }
+}
