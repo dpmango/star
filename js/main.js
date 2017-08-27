@@ -251,38 +251,45 @@
                 $(this).find('span').css({ top: relY, left: relX })
             });
 
-        if ($(window).width() > 992) {
 
-            $(window).on('resize', function() {
-                $('.blur-without-header.active').removeClass('active');
-                $('.mobile__menu.active').removeClass('active');
+        // we should use window.with rule inside resize event
+        $(window).on('resize', function() {
+            if ($(window).width() > 992) {
+              resetMobileMenu();
+            }
+        });
 
-            });
-
-
-            $(document).on('mouseover', '.header__nav-item > a', function() {
-                $('.header__top .fixed').css({
-                    opacity: 0,
-                    visibility: "hidden"
-                });
-
-                $('.blur-without-header').addClass('active');
-
-                $('.header__nav-item a').removeClass('active');
-
-                $(this).addClass('active');
-
-                $('.header__nav-inner').css({
-                    opacity: 0,
-                    visibility: "hidden"
-                });
-
-                $(this).siblings('.header__nav-inner').css({
-                    opacity: 1,
-                    visibility: "visible"
-                });
-            });
+        function resetMobileMenu(){
+          $('.blur-without-header').removeClass('active');
+          $('.menu-toggle').removeClass('active');
+          $('.mobile__menu').removeClass('active');
         }
+
+        $(document).on('mouseover', '.header__nav-item > a', function() {
+          if ($(window).width() > 992) {
+            $('.header__top .fixed').css({
+                opacity: 0,
+                visibility: "hidden"
+            });
+
+            $('.blur-without-header').addClass('active');
+
+            $('.header__nav-item a').removeClass('active');
+
+            $(this).addClass('active');
+
+            $('.header__nav-inner').css({
+                opacity: 0,
+                visibility: "hidden"
+            });
+
+            $(this).siblings('.header__nav-inner').css({
+                opacity: 1,
+                visibility: "visible"
+            });
+          }
+        });
+
 
         $(document).on('mouseleave', '.header__top', function() {
             if ($(window).width() > 992) {
@@ -483,9 +490,10 @@
             var top;
             $('body').addClass('fixed');
             $('.blur').addClass('none');
-            top = $('.trainer__staff').offset().top - heightBlock;
+            // top = $('.trainer__staff').offset().top - heightBlock;
             $(id).addClass('modal-active');
-            $('body,html').animate({ scrollTop: top }, 500);
+            // $('body,html').animate({ scrollTop: top }, 500);
+
         });
 
         $(document).on('click', '.trainer__content .close, .close-toggle', function(event) {

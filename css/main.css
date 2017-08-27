@@ -2312,13 +2312,19 @@ figure {
     top: 130px;
     left: -100%;
     width: 100%;
-    display: none;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
+    height: calc(100vh - 130px);
+    overflow-y: auto;
+    transform: translate3d(0,100%,0);
+    opacity: 0;
+    pointer-events: none;
     background: linear-gradient(rgba(29, 40, 49, 0.5), rgba(29, 40, 49, 0.5)), linear-gradient(to right, rgba(0, 255, 170, 0.5), rgba(29, 149, 253, 0.5));
     z-index: 8;
-    transition: all .3s linear;
+    transition: transform .3s ease-out, opacity .2s ease;
+}
+@media(min-width: 992px){
+  .mobile__menu {
+    display: none !important;
+  }
 }
 
 
@@ -2351,14 +2357,14 @@ figure {
     overflow-y: auto;
 }
 
-.price::-webkit-scrollbar { 
+.price::-webkit-scrollbar {
     width: 0;
 }
-.price { 
+.price {
     overflow: -moz-scrollbars-none;
 }
 
-.price { 
+.price {
     -ms-overflow-style: none;
 }
 
@@ -2368,7 +2374,7 @@ figure {
     height: 250px;
     position: relative;
     margin-bottom: 30px;
-    
+
 }
 .price__item .effect-duke {
     width: 100%;
@@ -2431,7 +2437,7 @@ figure {
     line-height: 30px;
     font-weight: 400;
     text-align: center;
-    text-transform: uppercase;   
+    text-transform: uppercase;
 }
 
 .price__count-training .economy {
@@ -2490,12 +2496,12 @@ figure {
     line-height: 2rem;
     text-align: center;
     color: #fff;
-    transition: all .3s linear;    
+    transition: all .3s linear;
 }
 
 .price__btn a:hover {
     background-color: #0fa;
-    color: #496274;      
+    color: #496274;
 }
 
 
@@ -2519,7 +2525,10 @@ figure {
 
 
 .mobile__menu.active {
+    opacity: 1;
+    transform: translate3d(0,0,0);
     left: 0;
+    pointer-events: all;
 }
 
 .mobile__training {
@@ -4322,7 +4331,8 @@ main {
     }
 
     .trainer {
-        min-height: auto;
+        min-height: 100vh;
+        height: 100vh;
         -webkit-flex-flow: column nowrap;
         -ms-flex-flow: column nowrap;
         flex-flow: column nowrap;
@@ -4344,6 +4354,8 @@ main {
     }
 
     .trainer__content {
+        margin-top: auto;
+        flex: 0 0 auto;
         position: relative;
         top: auto;
         right: auto;
@@ -4351,8 +4363,11 @@ main {
         width: 100%;
         padding-bottom: 3rem;
         background-color: white;
-        margin-top: 100vh;
         padding: 0 1.5rem 1.5rem;
+    }
+
+    .trainer__info-item.is-active{
+      max-width: auto;
     }
 
     .trainer .close {
@@ -4364,6 +4379,7 @@ main {
         padding-top: 30px;
         padding-bottom: 0;
         margin-right: 0;
+        overflow-y: auto;
     }
 
     .trainer__information {
@@ -4484,12 +4500,6 @@ main {
         display: none;
     }
 
-    .mobile__menu {
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-    }
-
     .main {
         display: -webkit-flex;
         display: -ms-flexbox;
@@ -4602,6 +4612,11 @@ main {
     }
 }
 
+@media(max-height: 500px){
+  .trainer__staff{
+    padding-top: 80px;
+  }
+}
 @media screen and (max-width: 768px) {
     .thank {
         padding: 50px;
@@ -4767,8 +4782,7 @@ main {
 
     .mobile__menu {
         top: 100px;
-        height: 100vh;
-        overflow-y: auto;
+        height: calc(100vh - 100px);
     }
     .mobile__menu > div {
         flex-shrink: 0;
@@ -5208,6 +5222,7 @@ main {
 
     .mobile__menu {
         top: 60px;
+        height: calc(100vh - 60px);
     }
 
     .mobile__training-item {
