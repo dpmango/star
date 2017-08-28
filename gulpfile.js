@@ -55,7 +55,7 @@ gulp.task('sass', function() {
 });
 
 gulp.task('sass:watch', function() {
-  gulp.watch('./pcss/**/*.{sass,scss}', ['sass']);
+  gulp.watch('./pcss/*.{sass,scss}', ['sass']);
 });
 
 
@@ -70,8 +70,8 @@ gulp.task('server', function() {
     },
     files: [
       './*.html',
-      './*.css',
-      './*.js'
+      './css/*.css',
+      './js/*.js'
     ],
     port: 3000,
     logLevel: 'info', // 'debug', 'info', 'silent', 'warn'
