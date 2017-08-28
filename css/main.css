@@ -2518,6 +2518,12 @@ figure {
   }
 }
 
+@media (max-width: 992px) {
+  body.overflow.fixed {
+    overflow-y: auto;
+  }
+}
+
 .header__nav-inner.buy {
   height: 100%;
   max-height: 90%;
@@ -4700,7 +4706,7 @@ main {
   }
   .trainer {
     min-height: 100vh;
-    height: 100vh;
+    height: auto;
     -webkit-flex-flow: column nowrap;
     -ms-flex-flow: column nowrap;
     -webkit-box-orient: vertical;
@@ -4736,6 +4742,13 @@ main {
     padding-bottom: 3rem;
     background-color: white;
     padding: 0 1.5rem 1.5rem;
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-top: 50vh;
+    z-index: 2;
   }
   .trainer__info-item.is-active {
     max-width: auto;
@@ -4950,12 +4963,6 @@ main {
             animation-name: none !important;
     visibility: visible !important;
     opacity: 1;
-  }
-}
-
-@media (max-height: 500px) {
-  .trainer__staff {
-    padding-top: 80px;
   }
 }
 
