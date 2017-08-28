@@ -401,7 +401,16 @@
         });
 
 
-        $('.phone-number').inputmask("+7 (999) 999-99-99");
+        // $('.phone-number').inputmask("+7 (999) 999-99-99");
+        $('.phone-number').mask("+7 (Z00) 000-00-00",{
+          clearIfNotMatch: false,
+          selectOnFocus: true,
+          translation: {
+            'Z': {
+              pattern: /[8-9]/, optional: false
+            }
+          }
+        });
 
         $(document).on('click', '.faq__list-item', function() {
 
