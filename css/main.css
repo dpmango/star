@@ -98,6 +98,9 @@
     src: url("../fonts/PTSans-Regular.woff") format("woff");
 }
 
+
+* {-webkit-overflow-scrolling: touch;}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -158,13 +161,6 @@ button {
 ::selection {
     color: #00ffac;
     background: #008dfd;
-}
-
-::-webkit-contacts-auto-fill-button {
-   visibility: hidden;
-   pointer-events: none;
-   position: absolute;
-   right: 0;
 }
 
 .overlay {
@@ -443,15 +439,15 @@ button {
     border: solid 3px #0fa;
 }
 
-.modal-training__form input[type="checkbox"] {
+.modal-training__form input[type="checkbox"], #pay input[type="checkbox"] {
     display: none;
 }
 
-.modal-training__form input[type="checkbox"]:checked+label:after {
+.modal-training__form input[type="checkbox"]:checked+label:after, #pay input[type="checkbox"]:checked+label:after  {
     opacity: 1;
 }
 
-.modal-training__form label {
+.modal-training__form label, #pay label {
     width: 460px;
     font-size: 1.4rem;
     line-height: 1.9rem;
@@ -470,7 +466,7 @@ button {
     margin: 30px auto 0;
 }
 
-.modal-training__form label:before {
+.modal-training__form label:before, #pay label:before {
     content: '';
     position: absolute;
     top: 0;
@@ -480,7 +476,7 @@ button {
     border: 1px solid #fff;
 }
 
-.modal-training__form label:after {
+.modal-training__form label:after, #pay label:after {
     content: '\f00c';
     position: absolute;
     top: 0;
@@ -493,7 +489,7 @@ button {
     transition: all .3s linear;
 }
 
-.modal-training__form label a {
+.modal-training__form label a, #pay label a {
     border-bottom: solid 1px #778f98;
     padding-bottom: 5px;
 }
@@ -632,8 +628,11 @@ button {
 }
 
 .blur.none {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
 }
+
 
 .blur-without-header {
     transition: all .3s linear;
@@ -1006,7 +1005,7 @@ figure {
 
 .trainer__image {
     background-repeat: no-repeat;
-    background-position: 50%;
+    background-position: top center;
     background-size: cover;
     height: 100%;
 }
@@ -2312,19 +2311,14 @@ figure {
     top: 130px;
     left: -100%;
     width: 100%;
-    height: calc(100vh - 130px);
-    overflow-y: auto;
-    transform: translate3d(0,100%,0);
-    opacity: 0;
-    pointer-events: none;
+    display: none;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
     background: linear-gradient(rgba(29, 40, 49, 0.5), rgba(29, 40, 49, 0.5)), linear-gradient(to right, rgba(0, 255, 170, 0.5), rgba(29, 149, 253, 0.5));
     z-index: 8;
-    transition: transform .3s ease-out, opacity .2s ease;
-}
-@media(min-width: 992px){
-  .mobile__menu {
-    display: none !important;
-  }
+    transition: all .3s linear;
+    
 }
 
 
@@ -2525,10 +2519,7 @@ figure {
 
 
 .mobile__menu.active {
-    opacity: 1;
-    transform: translate3d(0,0,0);
     left: 0;
-    pointer-events: all;
 }
 
 .mobile__training {
@@ -3228,15 +3219,13 @@ main {
     padding-bottom: 95px;
     background-color: #F4F7F6;
 }
-
 @media screen and (max-width : 414px) {
     .posts {
         padding-bottom: 0;
     }
 }
-
 .posts__title {
-    width: 350px;
+    width: 380px;
     font-family: PTSansCaption, sans-serif;
     font-size: 6.6rem;
     line-height: 6.6rem;
@@ -3733,20 +3722,19 @@ main {
 }
 
 .next__form input {
-    width: 100%;
-    height: 75px;
-    line-height: 75px;
+   width: 100%;
+    height: 60px;
+    line-height: 60px;
+    outline: none;
     border: none;
-    border-bottom: solid 2px #fff;
-    background-color: transparent;
-    text-align: center;
+    background: none;
     font-family: PTSansCaption, sans-serif;
     font-size: 2.6rem;
-    line-height: 2.6rem;
     font-weight: 700;
+    text-align: center;
     letter-spacing: 5px;
-    color: #778f98;
-    outline: none;
+    color: #accdd9;
+    border-bottom: solid 2px #fff;
 }
 
 .next__form input:focus+label {
@@ -3850,19 +3838,18 @@ main {
 
 .next-faq__form input {
     width: 100%;
-    height: 75px;
-    line-height: 75px;
+    height: 60px;
+    line-height: 60px;
+    outline: none;
     border: none;
-    border-bottom: solid 2px #fff;
-    background-color: transparent;
-    text-align: center;
+    background: none;
     font-family: PTSansCaption, sans-serif;
     font-size: 2.6rem;
-    line-height: 2.6rem;
     font-weight: 700;
+    text-align: center;
     letter-spacing: 5px;
-    color: #778f98;
-    outline: none;
+    color: #accdd9;
+    border-bottom: solid 2px #fff;
 }
 
 .next-faq__form input:focus+label {
@@ -3875,9 +3862,9 @@ main {
     height: 80px;
     width: 100%;
     margin: 75px auto 0;
-    display: -webkit-flex;
+   text-align: center
     display: -ms-flexbox;
-    display: flex;
+    text-align: center
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
@@ -4301,7 +4288,7 @@ main {
         text-align: center;
         display: inline-block;
         background-color: #0fa;
-        ;
+    ;
         color: #1d2831;
     }
 
@@ -4331,8 +4318,7 @@ main {
     }
 
     .trainer {
-        min-height: 100vh;
-        height: 100vh;
+        min-height: auto;
         -webkit-flex-flow: column nowrap;
         -ms-flex-flow: column nowrap;
         flex-flow: column nowrap;
@@ -4354,8 +4340,6 @@ main {
     }
 
     .trainer__content {
-        margin-top: auto;
-        flex: 0 0 auto;
         position: relative;
         top: auto;
         right: auto;
@@ -4363,11 +4347,8 @@ main {
         width: 100%;
         padding-bottom: 3rem;
         background-color: white;
+        margin-top: 100vh;
         padding: 0 1.5rem 1.5rem;
-    }
-
-    .trainer__info-item.is-active{
-      max-width: auto;
     }
 
     .trainer .close {
@@ -4379,7 +4360,6 @@ main {
         padding-top: 30px;
         padding-bottom: 0;
         margin-right: 0;
-        overflow-y: auto;
     }
 
     .trainer__information {
@@ -4500,6 +4480,12 @@ main {
         display: none;
     }
 
+    .mobile__menu {
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+
     .main {
         display: -webkit-flex;
         display: -ms-flexbox;
@@ -4612,11 +4598,6 @@ main {
     }
 }
 
-@media(max-height: 500px){
-  .trainer__staff{
-    padding-top: 80px;
-  }
-}
 @media screen and (max-width: 768px) {
     .thank {
         padding: 50px;
@@ -4780,9 +4761,12 @@ main {
         margin-top: 50%;
     }
 
-    .mobile__menu {
+      .mobile__menu {
         top: 100px;
-        height: calc(100vh - 100px);
+        overflow-y: auto;
+        height: 100vh;
+        
+      
     }
     .mobile__menu > div {
         flex-shrink: 0;
@@ -4792,6 +4776,7 @@ main {
         width: 100%;
         height: initial;
     }
+
     .main>.container {
         background-color: transparent;
         box-shadow: none;
@@ -4836,7 +4821,7 @@ main {
 
     .free__btn a {
         font-size: 1.4rem;
-        line-height: 4.6rem;
+        line-height: 5rem;
     }
 
     .effective__title {
@@ -5222,7 +5207,6 @@ main {
 
     .mobile__menu {
         top: 60px;
-        height: calc(100vh - 60px);
     }
 
     .mobile__training-item {
@@ -5314,7 +5298,7 @@ main {
         height: 50px;
     }
 
-    .next__form button {
+ .next__form button {
         margin-top: 25px;
         max-width: 280px;
         width: 280px;
@@ -5368,7 +5352,7 @@ main {
         width: 280px;
         height: 50px;
         font-size: 1.4rem;
-        line-height: 4rem;
+        line-height: 5rem;
     }
 
     .faq {
@@ -5708,4 +5692,51 @@ main {
     .header__links {
         margin-bottom: 3%;
     }
+}
+
+.footer li, .mobile__footer li {
+    list-style: none;
+}
+
+
+.holder {
+    width: 100%;
+    text-align: center;
+}
+.pay__price {
+    font-family: PTSansCaption, sans-serif;
+    font-weight: 400;
+    font-size: 3.4rem;
+    line-height: 2.6rem;
+    color: #fff;
+    text-align: center;
+    margin-top: 30px;
+    text-transform: uppercase;
+}
+#callback-top {
+    text-align: center;
+}
+#callback-top .phone-number {
+    margin: 0 auto;
+}
+
+
+.modal  input[name="user_name"] {
+    letter-spacing: normal !important;
+}
+
+
+/*Календарь фитнесс в кармане*/
+
+/*.custom-calendar-wrap {
+    margin: 120px auto 10px auto !important;
+ }
+.table_posit {    
+    margin-top: 200px !important;
+}*/
+
+
+#scheduleFrame {
+    margin-top: 100px;
+    
 }
