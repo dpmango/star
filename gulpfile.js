@@ -23,6 +23,7 @@ var processors = [
     remove: true, // remove outdated prefixes?
     // cascade: false
   }),
+  sorting(),
   flexbugs()
 ];
 
