@@ -4281,6 +4281,7 @@ main {
 
     .trainer__info {
         max-height: 100%;
+        height: auto !important;
         overflow: visible;
         padding-right: 0;
     }

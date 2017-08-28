@@ -547,7 +547,7 @@
             $('.modal-active').removeClass('modal-active');
             $('body').removeClass('fixed');
             $('.blur').removeClass('none');
-            // $('body,html').animate({ scrollTop: 0 }, 500);
+            $('body,html').animate({ scrollTop: 0 }, 500);
 
             if ($(window).width() < 992) {
                 if ($('.mobile__menu').hasClass('active')) {
