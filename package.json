@@ -15,5 +15,18 @@
   "bugs": {
     "url": "https://github.com/dpmango/star/issues"
   },
-  "homepage": "https://github.com/dpmango/star#readme"
+  "homepage": "https://github.com/dpmango/star#readme",
+  "dependencies": {
+    "autoprefixer": "^7.1.3",
+    "browser-sync": "^2.18.13",
+    "cssnano": "^3.10.0",
+    "gulp": "^3.9.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^7.0.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-util": "^3.0.8",
+    "postcss-flexbugs-fixes": "^3.2.0",
+    "postcss-sorting": "^3.0.1",
+    "run-sequence": "^2.1.0"
+  }
 }
