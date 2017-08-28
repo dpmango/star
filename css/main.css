@@ -2493,20 +2493,29 @@ figure {
   top: 130px;
   left: -100%;
   width: 100%;
-  display: none;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
+  height: -webkit-calc(100vh - 130px);
+  height: calc(100vh - 130px);
+  overflow-y: auto;
+  -webkit-transform: translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0);
+  opacity: 0;
+  pointer-events: none;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(29, 40, 49, 0.5)), to(rgba(29, 40, 49, 0.5))), -webkit-gradient(linear, left top, right top, from(rgba(0, 255, 170, 0.5)), to(rgba(29, 149, 253, 0.5)));
   background: -webkit-linear-gradient(rgba(29, 40, 49, 0.5), rgba(29, 40, 49, 0.5)), -webkit-linear-gradient(left, rgba(0, 255, 170, 0.5), rgba(29, 149, 253, 0.5));
   background: -o-linear-gradient(rgba(29, 40, 49, 0.5), rgba(29, 40, 49, 0.5)), -o-linear-gradient(left, rgba(0, 255, 170, 0.5), rgba(29, 149, 253, 0.5));
   background: linear-gradient(rgba(29, 40, 49, 0.5), rgba(29, 40, 49, 0.5)), linear-gradient(to right, rgba(0, 255, 170, 0.5), rgba(29, 149, 253, 0.5));
   z-index: 8;
-  -webkit-transition: all .3s linear;
-  -o-transition: all .3s linear;
-  transition: all .3s linear;
+  -webkit-transition: opacity .2s ease, -webkit-transform .3s ease-out;
+  transition: opacity .2s ease, -webkit-transform .3s ease-out;
+  -o-transition: transform .3s ease-out, opacity .2s ease;
+  transition: transform .3s ease-out, opacity .2s ease;
+  transition: transform .3s ease-out, opacity .2s ease, -webkit-transform .3s ease-out;
+}
+
+@media (min-width: 992px) {
+  .mobile__menu {
+    display: none !important;
+  }
 }
 
 .header__nav-inner.buy {
@@ -2746,6 +2755,10 @@ figure {
 
 .mobile__menu.active {
   left: 0;
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  pointer-events: all;
 }
 
 .mobile__training {
@@ -4686,7 +4699,8 @@ main {
     color: #fff;
   }
   .trainer {
-    min-height: auto;
+    min-height: 100vh;
+    height: 100vh;
     -webkit-flex-flow: column nowrap;
     -ms-flex-flow: column nowrap;
     -webkit-box-orient: vertical;
@@ -4709,6 +4723,11 @@ main {
     width: 100%;
   }
   .trainer__content {
+    margin-top: auto;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
     position: relative;
     top: auto;
     right: auto;
@@ -4716,8 +4735,10 @@ main {
     width: 100%;
     padding-bottom: 3rem;
     background-color: white;
-    margin-top: 100vh;
     padding: 0 1.5rem 1.5rem;
+  }
+  .trainer__info-item.is-active {
+    max-width: auto;
   }
   .trainer .close {
     display: none;
@@ -4727,6 +4748,7 @@ main {
     padding-top: 30px;
     padding-bottom: 0;
     margin-right: 0;
+    overflow-y: auto;
   }
   .trainer__information {
     max-width: 100%;
@@ -4832,12 +4854,6 @@ main {
   .header__blueline {
     display: none;
   }
-  .mobile__menu {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: -webkit-box;
-    display: flex;
-  }
   .main {
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -4935,6 +4951,12 @@ main {
             animation-name: none !important;
     visibility: visible !important;
     opacity: 1;
+  }
+}
+
+@media (max-height: 500px) {
+  .trainer__staff {
+    padding-top: 80px;
   }
 }
 
@@ -5080,8 +5102,8 @@ main {
   }
   .mobile__menu {
     top: 100px;
-    overflow-y: auto;
-    height: 100vh;
+    height: -webkit-calc(100vh - 100px);
+    height: calc(100vh - 100px);
   }
   .mobile__menu > div {
     -webkit-flex-shrink: 0;
@@ -5442,6 +5464,8 @@ main {
   }
   .mobile__menu {
     top: 60px;
+    height: -webkit-calc(100vh - 60px);
+    height: calc(100vh - 60px);
   }
   .mobile__training-item {
     height: 50px;
